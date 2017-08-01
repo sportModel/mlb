@@ -2,7 +2,7 @@ makeIndex <- function()
   {
     filename <- paste(mlb.par@loc,"/index.html",sep="")
     sink(filename)
-    cat("<p>\n",
+    cat("---\n---\n<p>\n",
         "Statistics for each season are available in two formats: by team and by position.  The team pages tell a story about which players on the team have contributed the most to the team's win/loss record.  The position pages inform us about which players have been the best and worst in MLB at their respective positions.\n",
         "</p>\n",
         "<p>\n",

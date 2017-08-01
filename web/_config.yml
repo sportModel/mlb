@@ -1,0 +1,23 @@
+# Site settings
+title: "Major League Baseball: Wins Created"
+email: pat5547@gmail.com
+description: "Decomposing wins into wins created per player using expecations"
+github_username:  sportModel
+
+# Build settings
+markdown: kramdown
+exclude: [new]
+
+# Defaults
+defaults:
+  -
+    scope:
+      type: posts
+    values:
+      layout: post
+      rel: "../../../"
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"

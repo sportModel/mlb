@@ -57,7 +57,7 @@ makeTeamMain <- function(mlb.raw,mlb.vc,mlb.team,team) {
   
   filename <- paste(mlb.par@loc,"/",mlb.par@year,"_",team,".html",sep="")
   sink(filename)
-  cat("<a href=",mlb.par@year,"_",team,"_batting.html> Batting </a> <br><br>\n",sep="")
+  cat("---\n---\n<a href=",mlb.par@year,"_",team,"_batting.html> Batting </a> <br><br>\n",sep="")
   cat("<a href=",mlb.par@year,"_",team,"_pitching.html> Pitching </a> <br><br>\n",sep="")
   cat("<a href=",mlb.par@year,"_",team,"_fielding.html> Fielding </a> <br><br>\n",sep="")
   cat("<P> @@nbsp@@; <P>\n")

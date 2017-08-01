@@ -29,6 +29,7 @@ makePos <- function(mlb.pos, Pos) {
   
   filename <- paste(mlb.par@loc,"/",mlb.par@year,"_",Pos,".html",sep="")
   sink(filename)
+  cat("---\n---\n")
   print(display,type="html",html.table.attributes="class=\"sortable ctable\"")
   sink()
   cleanTable(filename)
