@@ -462,6 +462,10 @@ pre {
     font-weight: normal;
 }
 
+table.container td{
+  vertical-align: top;
+}
+
 .print_only, .hidden{
     display:none;
 }
