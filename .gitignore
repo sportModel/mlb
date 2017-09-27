@@ -1,6 +1,2 @@
-data
-old
-sandbox
-!scripts/*
-!functions/data
-web
+!*
+_site

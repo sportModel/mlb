@@ -1,5 +1,0 @@
-*.html
-_site
-!index.html
-!_layouts/*.html
-!_includes/*.html

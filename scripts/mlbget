@@ -1,5 +1,0 @@
-#!/bin/bash
-if [ $1 -ge 2008 ]
-  then sh mlbget2008-.sh $1
-  else sh mlbget-2007.sh $1
-fi
