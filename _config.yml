@@ -2,11 +2,17 @@
 title: "Major League Baseball: Wins Created"
 email: pat5547@gmail.com
 description: "Decomposing wins into wins created per player using expecations"
+url: "http://sportmodel.github.io/mlb"
+baseurl: ""
 github_username:  sportModel
 
 # Build settings
 markdown: kramdown
 exclude: [new]
+
+# Trying this out
+relative_links:
+  enabled:     false
 
 # Defaults
 defaults:
@@ -21,3 +27,4 @@ defaults:
       path: ""
     values:
       layout: "default"
+      rel: "./"
