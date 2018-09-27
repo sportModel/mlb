@@ -1,5 +1,3 @@
-require(xtable)
-options(stringsAsFactors=F)
 source.dir("functions")
 source.dir("functions/data")
 source.dir("functions/stat")

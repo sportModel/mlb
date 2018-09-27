@@ -1,7 +1,7 @@
 makePosPage <- function() {
-  filename <- paste(mlb.par@loc, "/", mlb.par@year, "_", "pos.html", sep="")
-  cat('---\n---\n&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp <a                        
-href="', mlb.par@year, '_cf.html">CF</a><br>                                            
+  f <- paste(mlb.par@loc, "/", mlb.par@year, "/", "pos.html", sep="")
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp <a href="', mlb.par@year, '_cf.html">CF</a><br>                                            
   &nbsp &nbsp <a href="', mlb.par@year, '_lf.html">LF</a>                                
   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <a                 
 href="', mlb.par@year, '_rf.html">RF</a><br><br><br>                                    
@@ -25,7 +25,5 @@ href="', mlb.par@year, '_c.html">C</a><br><br>
   <br>                                                                      
   <br>                                                                      
   <br>          
-  <br>', sep="", file=filename)
+  <br>', sep="", file=filename, append=TRUE)
 }
-  
-  

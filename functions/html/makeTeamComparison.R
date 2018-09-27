@@ -22,12 +22,9 @@ makeTeamComparison <- function(mlb.team) {
   align(display.def)[1] <- "l"
   
   
-  filename <- paste(mlb.par@loc,"/",mlb.par@year,"_team_comparison.html",sep="")
-  sink(filename)
-  cat('---\n---\n')
-  print(display.ovr,type="html",html.table.attributes="class=\"sortable ctable\"")
-  print(display.off,type="html",html.table.attributes="class=\"sortable ctable\"")
-  print(display.def,type="html",html.table.attributes="class=\"sortable ctable\"")
-  sink()
-  cleanTable(filename)
+  f <- paste(mlb.par@loc, "/", mlb.par@year, "/team_comparison.html", sep="")
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  print(display.ovr,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
+  print(display.off,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
+  print(display.def,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
 }

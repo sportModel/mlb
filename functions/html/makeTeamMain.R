@@ -1,4 +1,4 @@
-makeTeamMain <- function(mlb.raw,mlb.vc,mlb.team,team) {
+makeTeamMain <- function(mlb.raw, mlb.vc, mlb.team, team) {
   i <- row.names(mlb.team)==team
   tv <- mlb.team
   tv$WC.Off <- tv$VC.Off * mlb.par@model["R"]
@@ -55,23 +55,19 @@ makeTeamMain <- function(mlb.raw,mlb.vc,mlb.team,team) {
   display5 <- xtable(Y[ind,],digits=display.digits)
   align(display5) <- c("l",rep("r",length(align(display5))-1))
   
-  filename <- paste(mlb.par@loc,"/",mlb.par@year,"_",team,".html",sep="")
-  sink(filename)
-  cat("---\n---\n<a href=",mlb.par@year,"_",team,"_batting.html> Batting </a> <br><br>\n",sep="")
-  cat("<a href=",mlb.par@year,"_",team,"_pitching.html> Pitching </a> <br><br>\n",sep="")
-  cat("<a href=",mlb.par@year,"_",team,"_fielding.html> Fielding </a> <br><br>\n",sep="")
-  cat("<P> @@nbsp@@; <P>\n")
-  cat("<TABLE class=\"container\">\n<TR><TD>")
-  print(display1,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%")
-  cat("</TD>\n<TD>")
-  print(display2,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%")
-  cat("</TD>\n<TD>")
-  print(display3,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%")
-  cat("</TD>\n<TD>")
-  print(display4,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%")
-  cat("</TD></TR></TABLE>\n")
-  cat("<P> @@nbsp@@; <P>\n")
-  print(display5,type="html",html.table.attributes="class=\"sortable ctable\"")
-  sink()
-  cleanTable(filename)
+  f <- paste(mlb.par@loc, "/", mlb.par@year, "/", team, ".html", sep="")
+  cat(paste0("---\nyear: ", mlb.par@year, "\nrel: ../../\n---\n"), file=f)
+  cat("<a href=", team,"_batting.html> Batting </a> <br><br>\n",sep="", file=f, append=TRUE)
+  cat("<a href=", team,"_pitching.html> Pitching </a> <br><br>\n",sep="", file=f, append=TRUE)
+  cat("<a href=", team,"_fielding.html> Fielding </a> <br><br>\n",sep="", file=f, append=TRUE)
+  cat("<TABLE class=\"container\">\n<TR><TD>", file=f, append=TRUE)
+  print(display1,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
+  cat("</TD>\n<TD>", file=f, append=TRUE)
+  print(display2,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
+  cat("</TD>\n<TD>", file=f, append=TRUE)
+  print(display3,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
+  cat("</TD>\n<TD>", file=f, append=TRUE)
+  print(display4,type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
+  cat("</TD></TR></TABLE>\n", file=f, append=TRUE)
+  print(display5,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
 }

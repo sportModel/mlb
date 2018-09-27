@@ -1,4 +1,4 @@
-makeTeamFielding <- function(mlb.raw,mlb.vc,team) {
+makeTeamFielding <- function(mlb.raw, mlb.vc, team) {
   raw <- mlb.raw@fielding[which(mlb.raw@fielding$Team==team),]
   attr(raw,"row.names") <- raw$Name    
   ##vc <- mlb.vc@fielding[which(mlb.vc@fielding$Team==team & mlb.vc@fielding$Pos!="c"),]
@@ -20,17 +20,15 @@ makeTeamFielding <- function(mlb.raw,mlb.vc,team) {
   align(display.vc) <- rep("r",length(align(display.vc)))
   align(display.vc)[1] <- "l"
   
+  f <- paste(mlb.par@loc, "/", mlb.par@year, "/",team, "_fielding.html", sep="")
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
+  print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
   
-  filename <- paste(mlb.par@loc,"/",mlb.par@year,"_",team,"_fielding",".html",sep="")
-  sink(filename)
-  cat('---\n---\n')
-  print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"")
-  print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"")
-  sink()
-  cleanTable(filename)
-  buffer <- readLines(filename)
-  buffer <- gsub("([^0123456789])\\.[123456789]","\\1",buffer)
-  f <- file(filename,"w")
-  writeLines(buffer,con=f)
-  close(f)    
+  # Why do we need this?
+  buffer <- readLines(f)
+  buffer <- gsub("([^0123456789])\\.[123456789]", "\\1", buffer)
+  FILE <- file(f, "w")
+  writeLines(buffer, con=FILE)
+  close(FILE)
 }

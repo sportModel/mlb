@@ -1,5 +1,4 @@
 updateWebsite <- function(mlb.raw,mlb.vc,mlb.team) {
-  makeIndex()
   makeTeams(mlb.team)
   makeTeamComparison(mlb.team)
   pos <- c("c","1b","2b","3b","ss","lf","cf","rf","p", "dh")

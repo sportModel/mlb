@@ -1,7 +1,9 @@
-formatTeamBatting <- function(year,team) {
-  filename <- paste("data/",year,"/raw/",team,"_br.html",sep="")
-  require(XML)
-  raw <- readHTMLTable(filename)[["team_batting"]]
+formatTeamBatting <- function(year, team) {
+  #filename <- paste("data/", year, "/raw/",team,"_br.html",sep="")
+  #raw <- XML::readHTMLTable(filename)[["team_batting"]]
+  pg <- xml2::read_html(paste0("data/", year, "/raw/", team, "_br.html"))
+  raw <- rvest::html_node(pg, '#team_batting') %>% rvest::html_table()
+  
   raw <- raw[raw$PA != "PA",-1]
   names(raw)[2] <- "Name"
   raw$Name <- gsub("*", "", raw$Name, fixed=TRUE)

@@ -2,8 +2,7 @@ makeTeams <- function(mlb.team) {
   ## create list of matrices
   n.d <- length(mlb.par@divisions)
   X <- D <- vector("list",n.d)
-  for (d in 1:length(mlb.par@divisions))
-  {
+  for (d in 1:length(mlb.par@divisions)) {
     teams <- mlb.par@divisions[[d]]
     ind <- match(teams,mlb.par@team)
     X[[d]] <- matrix("",nrow=length(teams),ncol=5)
@@ -22,26 +21,26 @@ makeTeams <- function(mlb.team) {
     ## Format for printing
     link <- character(length(teams))
     for (i in 1:length(teams)) {
-      link[i] <- paste("@@lt@@A href=@@quote@@",mlb.par@year,"_",X[[d]][i,1],".html@@quote@@ @@gt@@ ",X[[d]][i,2],"@@lt@@/a@@gt@@",sep="")
+      link[i] <- paste0("<a href=\"", X[[d]][i,1], ".html\"> ", X[[d]][i,2], "</a>")
     }
     X[[d]] <- cbind(link,X[[d]][,3:5])
     colnames(X[[d]]) <- c("Team","W","L","GB")
-    D[[d]] <- xtable(X[[d]])
-    align(D[[d]]) <- c("l","l","r","r","r")
+    #D[[d]] <- xtable(X[[d]])
+    #align(D[[d]]) <- c("l","l","r","r","r")
   }
   
   ## display
-  filename <- paste(mlb.par@loc,"/",mlb.par@year,"_teams.html",sep="")
-  sink(filename)
-  cat("---\n---\n<TABLE class=\"container\">\n")
+  f <- paste(mlb.par@loc, "/", mlb.par@year, "/teams.html", sep="")
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat("<TABLE class=\"container\">\n", file=f, append=TRUE)
   for (i in 1:3) {
-    cat("<TR><TD align=\"center\">",names(mlb.par@divisions)[i],"</TD><TD align=\"center\">",names(mlb.par@divisions)[i+3],"</TD></TR>\n<TR><TD>")
-    print(D[[i]],type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%")
-    cat("</TD>\n<TD>")
-    print(D[[i+3]],type="html",include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%")
-    cat("</TD></TR>\n")
+    cat("<TR><TD align=\"center\">",names(mlb.par@divisions)[i],"</TD><TD align=\"center\">",names(mlb.par@divisions)[i+3],"</TD></TR>\n<TR><TD>", file=f, append=TRUE)
+    cat(knitr::kable(X[[i]], 'html', escape=FALSE, table.attr = "class=\"sortable ctable\" width=100%"), file=f, append=TRUE)
+    #print(D[[i]], type="html", include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
+    cat("</TD>\n<TD>", file=f, append=TRUE)
+    cat(knitr::kable(X[[i+3]], 'html', escape=FALSE, table.attr = "class=\"sortable ctable\" width=100%"), file=f, append=TRUE)
+    #print(D[[i+3]], type="html", include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
+    cat("</TD></TR>\n", file=f, append=TRUE)
   }
-  cat("</TABLE>\n")
-  sink()
-  cleanTable(filename)
+  cat("</TABLE>\n", file=f, append=TRUE)
 }

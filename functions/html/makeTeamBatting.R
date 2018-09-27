@@ -1,4 +1,4 @@
-makeTeamBatting <- function(mlb.raw,mlb.vc,team) {
+makeTeamBatting <- function(mlb.raw, mlb.vc, team) {
   raw <- mlb.raw@batting[which(mlb.raw@batting$Team==team),]
   vc <- mlb.vc@batting[which(mlb.vc@batting$Team==team),]
   rownames(raw) <- raw$Name
@@ -25,12 +25,8 @@ makeTeamBatting <- function(mlb.raw,mlb.vc,team) {
   align(display.vc) <- rep("r",length(align(display.vc)))
   align(display.vc)[1] <- "l"
   
-  
-  filename <- paste(mlb.par@loc,"/",mlb.par@year,"_",team,"_batting",".html",sep="")
-  sink(filename)
-  cat('---\n---\n')
-  print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"")
-  print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"")
-  sink()
-  cleanTable(filename)
+  f <- paste(mlb.par@loc, "/", mlb.par@year, "/", team, "_batting.html", sep="")
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
+  print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
 }
