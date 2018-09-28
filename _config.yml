@@ -10,6 +10,10 @@ github_username:  sportModel
 markdown: kramdown
 exclude: [new]
 
+# Necessary for GitHub
+relative_links:
+  enabled:     false
+
 # Defaults
 defaults:
   -
