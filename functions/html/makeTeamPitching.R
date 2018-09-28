@@ -21,7 +21,7 @@ makeTeamPitching <- function(mlb.raw, mlb.vc, team) {
   
   
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/",team, "_pitching.html", sep="")
-  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
   print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
   print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
 }

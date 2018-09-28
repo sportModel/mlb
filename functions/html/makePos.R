@@ -28,6 +28,6 @@ makePos <- function(mlb.pos, Pos) {
   align(display)[1] <- "l"
   
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/", Pos, ".html", sep="")
-  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
   print(display, type="html", html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
 }

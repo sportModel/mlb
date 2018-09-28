@@ -23,7 +23,7 @@ makeTeamComparison <- function(mlb.team) {
   
   
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/team_comparison.html", sep="")
-  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
   print(display.ovr,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
   print(display.off,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
   print(display.def,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)

@@ -26,7 +26,7 @@ makeTeamBatting <- function(mlb.raw, mlb.vc, team) {
   align(display.vc)[1] <- "l"
   
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/", team, "_batting.html", sep="")
-  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
   print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
   print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
 }

@@ -31,7 +31,7 @@ makeTeams <- function(mlb.team) {
   
   ## display
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/teams.html", sep="")
-  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
   cat("<TABLE class=\"container\">\n", file=f, append=TRUE)
   for (i in 1:3) {
     cat("<TR><TD align=\"center\">",names(mlb.par@divisions)[i],"</TD><TD align=\"center\">",names(mlb.par@divisions)[i+3],"</TD></TR>\n<TR><TD>", file=f, append=TRUE)

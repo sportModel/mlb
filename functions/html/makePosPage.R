@@ -1,6 +1,6 @@
 makePosPage <- function() {
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/", "pos.html", sep="")
-  cat('---\nyear: ', mlb.par@year, '\nrel: ../../\n---\n', file=f)
+  cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
   cat('&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp <a href="', mlb.par@year, '_cf.html">CF</a><br>                                            
   &nbsp &nbsp <a href="', mlb.par@year, '_lf.html">LF</a>                                
   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <a                 
