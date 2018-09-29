@@ -1,6 +1,6 @@
 ---
-year: 2018
-rel: ../../
+year:  2018 
+rel: ../
 ---
 
 [Pitcher](p.html)  
@@ -13,4 +13,4 @@ rel: ../../
 [Center field](cf.html)  
 [Right field](rf.html)  
 [Designated hitter](dh.html)  
-[All position players](allpos.html)  
+[All position players](allpos.html)
