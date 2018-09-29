@@ -7,5 +7,4 @@ mlb.team <- calculateTeam(mlb.raw,mlb.vc)
 save(mlb.par, mlb.raw, mlb.vc, mlb.team, file=paste("data/",year,"/mlb.rda",sep=""))
 updateWebsite(mlb.raw, mlb.vc, mlb.team)
 
-# year <- 2018
 # load('data/2018/mlb.rda')

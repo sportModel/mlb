@@ -1,7 +1,4 @@
 makePos <- function(mlb.pos, Pos) {
-#   if (Pos=="p") X <- combineP(mlb.vc)
-#   if (Pos=="dh") X <- combineDH(mlb.raw, mlb.vc)
-#   if (!is.element(Pos,c("p","dh"))) X <- combinePos(mlb.raw,mlb.vc,Pos)
   if (Pos=="p") {
     X <- mlb.pos$pit
   } else if (Pos=="") {
