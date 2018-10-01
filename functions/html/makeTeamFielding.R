@@ -1,7 +1,6 @@
 makeTeamFielding <- function(mlb.raw, mlb.vc, team) {
   raw <- mlb.raw@fielding[which(mlb.raw@fielding$Team==team),]
   attr(raw,"row.names") <- raw$Name    
-  ##vc <- mlb.vc@fielding[which(mlb.vc@fielding$Team==team & mlb.vc@fielding$Pos!="c"),]
   vc <- mlb.vc@fielding[which(mlb.vc@fielding$Team==team),]
   attr(vc,"row.names") <- vc$Name
   

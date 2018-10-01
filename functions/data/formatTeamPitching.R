@@ -1,8 +1,6 @@
 formatTeamPitching <- function(year,team) {
   filename <- paste("data/",year,"/raw/",team,"_br.html",sep="")
-  require(XML)
-  ## Standard
-  raw <- readHTMLTable(filename)[["team_pitching"]]
+  raw <- XML::readHTMLTable(filename, stringsAsFactors=FALSE)[["team_pitching"]]
   raw <- raw[raw$Age != "Age", -1]
   names(raw)[2] <- "Name"
   raw$Name <- gsub("*", "", raw$Name, fixed=TRUE)

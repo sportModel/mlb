@@ -3,8 +3,7 @@ getSalary <- function() {
   val <- NULL
   for (team in mlb.par@team) {
     filename <- paste("data/",year,"/raw/",team,"_br.html",sep="")
-    require(XML)
-    raw <- readHTMLTable(filename)
+    raw <- XML::readHTMLTable(filename, stringAsFactors=FALSE)
     s <- c(raw[["players_value_batting"]]$Salary, raw[["players_value_pitching"]]$Salary)
     s <- gsub("$", "", s, fixed=TRUE)
     s <- gsub(",", "", s, fixed=TRUE)
