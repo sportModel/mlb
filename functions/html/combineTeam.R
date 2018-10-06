@@ -6,10 +6,10 @@ combineTeam <- function(mlb.vc,team) {
   id.b <- batting$Name
   id.p <- pitching$Name
   id.f <- fielding$Name
-  id <- unique(c(id.b,id.p,id.f))
+  id <- unique(c(id.b, id.p, id.f))
   n <- length(id)
   
-  vc <- matrix(NA,nrow=n,ncol=3)
+  vc <- matrix(NA, nrow=n, ncol=3)
   rownames(vc) <- id
   colnames(vc) <- c("VC.Off","VC.Def","WC")
   Pos <- character(n)

@@ -1,17 +1,17 @@
 formatTeamPitching <- function(year,team) {
-  filename <- paste("data/",year,"/raw/",team,"_br.html",sep="")
-  raw <- XML::readHTMLTable(filename, stringsAsFactors=FALSE)[["team_pitching"]]
-  raw <- raw[raw$Age != "Age", -1]
-  names(raw)[2] <- "Name"
-  raw$Name <- gsub("*", "", raw$Name, fixed=TRUE)
-  raw$Name <- gsub("#", "", raw$Name, fixed=TRUE)
-  raw <- cbind(raw[,1:2], Team=team, raw[,-(1:2)])
+  pg <- xml2::read_html(paste0("data/", year, "/raw/", team, "_br.html"))
+  raw <- rvest::html_node(pg, '#team_pitching') %>% rvest::html_table() %>% as.data.table
+  raw <- raw[Age != "Age" & !grepl(' Totals', Name) & !grepl('Rank in ', Name)]
+  raw[, Rk := NULL]
+  raw[, Name := gsub("*", "", Name, fixed=TRUE)]
+  raw[, Name := gsub("#", "", Name, fixed=TRUE)]
+  raw[, Name := gsub(" \\(.*\\)", "", Name)]
+  raw[, Team := team]
+  setcolorder(raw, c('Name', 'Pos', 'Team'))
   for (i in 4:ncol(raw)) {
-    raw[,i] <- as.numeric(raw[,i])
+    raw[, names(raw)[i] := as.numeric(raw[[i]])]
   }
-  names(raw)[names(raw)=="BF"] <- "TBF"
-  names(raw)[names(raw)=="SO/9"] <- "K9"
-  names(raw)[names(raw)=="BB/9"] <- "BB9"
-  names(raw)[names(raw)=="SO/BB"] <- "KBB"
-  raw
+  setnames(raw, 'BF', 'TBF')
+  setnames(raw, 'SO9', 'K9')
+  raw[IP > 0]
 }
