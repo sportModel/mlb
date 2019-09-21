@@ -4,24 +4,20 @@ makeTeamPitching <- function(mlb.raw, mlb.vc, team) {
   vc <- mlb.vc@pitching[which(mlb.vc@pitching$Team==team),]
   rownames(vc) <- raw$Name
   
-  display.categories.raw <- c("G","GS","W","L","SV","IP","H","HR","BB","SO","WHIP","ERA")
-  display.digits.raw <- c(rep(0,6),1,rep(0,4),rep(2,2))
-  display.categories.vc <- c("VC.SOA","VC.BBA","VC.HRA","VC.BIP","VC.BABIP","VC.Def")
-  display.digits.vc <- c(0,rep(1,length(display.categories.vc)))
+  ctg_raw <- c("G","GS","W","L","SV","IP","H","HR","BB","SO","WHIP","ERA")
+  dig_raw <- c(rep(0,6),1,rep(0,4),rep(2,2))
+  ind_raw <- order(raw[,'IP'], decreasing = TRUE)
+  aln_raw <- rep('r', length(ctg_raw))
+  raw_tab <- knitr::kable(raw[ind_raw,ctg_raw], digits=dig_raw, format='html', align=aln_raw, table.attr='class="sortable ctable"')
   
-  ind.raw <- sort(raw[,"IP"], ind=T, dec=T)$ix
-  ind.vc <- sort(vc[,"VC.Def"], ind=T, dec=T)$ix
-  
-  display.raw <- xtable(raw[ind.raw,display.categories.raw],digits=display.digits.raw)
-  align(display.raw) <- rep("r",length(align(display.raw)))
-  align(display.raw)[1] <- "l"
-  display.vc <- xtable(vc[ind.vc,display.categories.vc],digits=display.digits.vc)
-  align(display.vc) <- rep("r",length(align(display.vc)))
-  align(display.vc)[1] <- "l"
-  
+  ctg_vc <- c("VC.SOA","VC.BBA","VC.HRA","VC.BIP","VC.BABIP","VC.Def")
+  dig_vc <- c(0,rep(1,length(ctg_vc)))
+  ind_vc <- order(vc[,"VC.Def"], decreasing = TRUE)
+  aln_vc <- rep('r', length(ctg_vc))
+  vc_tab <- knitr::kable(vc[ind_vc,ctg_vc], digits=dig_vc, format='html', align=aln_vc, table.attr='class="sortable ctable"')
   
   f <- paste(mlb.par@loc, "/", mlb.par@year, "/",team, "_pitching.html", sep="")
   cat('---\nyear: ', mlb.par@year, '\nrel: ../\n---\n', file=f)
-  print(display.raw,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
-  print(display.vc,type="html",html.table.attributes="class=\"sortable ctable\"", file=f, append=TRUE)
+  cat(raw_tab, type="html", file=f, append=TRUE)
+  cat(vc_tab, type="html", file=f, append=TRUE)
 }

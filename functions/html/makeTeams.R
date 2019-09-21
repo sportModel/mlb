@@ -25,8 +25,6 @@ makeTeams <- function(mlb.team) {
     }
     X[[d]] <- cbind(link,X[[d]][,3:5])
     colnames(X[[d]]) <- c("Team","W","L","GB")
-    #D[[d]] <- xtable(X[[d]])
-    #align(D[[d]]) <- c("l","l","r","r","r")
   }
   
   ## display
@@ -36,10 +34,8 @@ makeTeams <- function(mlb.team) {
   for (i in 1:3) {
     cat("<TR><TD align=\"center\">",names(mlb.par@divisions)[i],"</TD><TD align=\"center\">",names(mlb.par@divisions)[i+3],"</TD></TR>\n<TR><TD>", file=f, append=TRUE)
     cat(knitr::kable(X[[i]], 'html', escape=FALSE, table.attr = "class=\"sortable ctable\" width=100%"), file=f, append=TRUE)
-    #print(D[[i]], type="html", include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
     cat("</TD>\n<TD>", file=f, append=TRUE)
     cat(knitr::kable(X[[i+3]], 'html', escape=FALSE, table.attr = "class=\"sortable ctable\" width=100%"), file=f, append=TRUE)
-    #print(D[[i+3]], type="html", include.rownames=FALSE,html.table.attributes="class=\"sortable ctable\" width=100%", file=f, append=TRUE)
     cat("</TD></TR>\n", file=f, append=TRUE)
   }
   cat("</TABLE>\n", file=f, append=TRUE)
