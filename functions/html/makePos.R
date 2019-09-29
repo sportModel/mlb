@@ -17,7 +17,7 @@ makePos <- function(mlb.pos, Pos) {
     ctg <- names(X)
     Pos <- "allpos"
   }
-  dig <- c(0,0,rep(1,length(ctg)-1))
+  dig <- c(0,rep(1,length(ctg)-1))
   ind <- sort(X[,"WC"], ind=T, dec=T)$ix
   aln <- rep('r', length(ctg))
   display <- knitr::kable(X[ind,ctg], digits=dig, format='html', align=aln, table.attr='class="sortable ctable"')

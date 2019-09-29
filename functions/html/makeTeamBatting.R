@@ -11,13 +11,13 @@ makeTeamBatting <- function(mlb.raw, mlb.vc, team) {
   raw <- cbind(raw,OBP,SLG,OPS)
   
   ctg_raw <- c("Pos","G","PA","R","H","2B","3B","HR","RBI","BB","SB","CS","AVG","OBP","SLG","OPS")
-  dig_raw <- c(rep(0,13),rep(3,4))
+  dig_raw <- c(rep(0,12),rep(3,4))
   ind_raw <- sort(as.numeric(raw[,"PA"]),ind=T,dec=T)$ix
   aln_raw <- rep('r', length(ctg_raw))
   raw_tab <- knitr::kable(raw[ind_raw,ctg_raw], digits=dig_raw, format='html', align=aln_raw, table.attr='class="sortable ctable"')
   
   ctg_vc <- c("Pos", "VC.1B", "VC.2B", "VC.3B", "VC.HR", "VC.H", "VC.BB", "VC.SB", "VC.Off")
-  dig_vc <- c(0,0,rep(1,length(ctg_vc)-1))
+  dig_vc <- c(0,rep(1,length(ctg_vc)-1))
   ind_vc <- sort(vc[,"VC.Off"],ind=T,dec=T)$ix
   aln_vc <- rep('r', length(ctg_vc))
   vc_tab <- knitr::kable(vc[ind_vc,ctg_vc], digits=dig_vc, format='html', align=aln_vc, table.attr='class="sortable ctable"')
