@@ -1,0 +1,2 @@
+#!/bin/bash
+R CMD BATCH --no-save --no-restore "--args $1" x.R .x.Rout
