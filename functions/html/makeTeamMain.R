@@ -37,7 +37,7 @@ makeTeamMain <- function(mlb.raw, mlb.vc, mlb.team, team) {
   display3 <- knitr::kable(X3, format='html', align=aln, table.attr='class="sortable ctable"')
   display4 <- knitr::kable(X4, format='html', align=aln, table.attr='class="sortable ctable"')
   
-  Y <- combineTeam(mlb.vc,team)
+  Y <- combineTeam(mlb.vc, team)
   dig <- c(0, rep(1,3))
   ind <- sort(Y[,"WC"],ind=T,dec=T)$ix
   aln <- rep('r', ncol(Y))

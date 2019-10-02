@@ -6,6 +6,7 @@ formatTeamFielding <- function(year,team) {
     allRaw <- XML::readHTMLTable(filename, stringsAsFactors=FALSE)
     name <- grep("LeaderBoard", names(allRaw), value=TRUE)
     STD <- as.data.table(allRaw[[name]][,-1])
+    STD[, Pos := Pos]
 
     filename <- paste("data/", year, "/raw/", team, "_fld_adv_", Pos, ".html", sep="")
     allRaw <- XML::readHTMLTable(filename, stringsAsFactors=FALSE)

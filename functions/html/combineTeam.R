@@ -1,4 +1,4 @@
-combineTeam <- function(mlb.vc,team) {
+combineTeam <- function(mlb.vc, team) {
   batting <- mlb.vc@batting[which(mlb.vc@batting$Team==team),]
   pitching <- mlb.vc@pitching[which(mlb.vc@pitching$Team==team),]
   fielding <- mlb.vc@fielding[which(mlb.vc@fielding$Team==team),]
